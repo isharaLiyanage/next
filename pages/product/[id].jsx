@@ -250,8 +250,12 @@ function Product({ product, productList }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`http://localhost:3000/api/product/${params.id}`);
-  const popularRes = await axios.get("http://localhost:3000/api/product");
+  const res = await axios.get(
+    `https://incredible-biscotti-8e24c5.netlify.app/api/product/${params.id}`
+  );
+  const popularRes = await axios.get(
+    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
+  );
   return {
     props: {
       product: res.data,

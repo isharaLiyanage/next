@@ -15,7 +15,7 @@ function ProductList({ productList }) {
         </p>
 
         <div className=" container">
-          <div className="flex flex-wrap justify-evenly m-auto">
+          <div className="flex flex-wrap  justify-evenly m-auto">
             {productList.map((product) => (
               <ShopCard product={product} key={product._id} />
             ))}

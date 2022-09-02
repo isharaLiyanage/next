@@ -1,0 +1,14 @@
+.start{
+    scroll-snap-align: start;
+    margin: 5px;
+  
+    
+
+}
+.hoverItem{
+    display: none;
+}
+.hover {cursor: pointer;}
+.hover:hover .hoverItem{
+    display: block;
+}

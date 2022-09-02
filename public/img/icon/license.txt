@@ -1,0 +1,19 @@
+/**
+ * 30 E-Commerce Icons
+ *
+ * URL: http://sixrevisions.com/freebies/icons/30-e-commerce-icons/
+ *
+ * This downloadable freebie source file package includes 30
+ * icons in PNG format and layered PSD files.
+ *
+ * You MAY use the source files in this package for commercial
+ * and personal projects.
+ *
+ * You MAY NOT redistribute or sell the source files in this package.
+ *
+ * Six Revisions (sixrevisions.com)
+ *
+ * Author     Rafi Md
+ * Author     Six Revisions
+ * Copyright  Rafi Md and Six Revisions
+ */

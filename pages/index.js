@@ -17,7 +17,7 @@ export default function Home({ productList }) {
 
       <Featured />
       <Information />
-      {/* <ShopList productList={productList} /> */}
+      <ShopList productList={productList} />
       <People />
     </div>
   );

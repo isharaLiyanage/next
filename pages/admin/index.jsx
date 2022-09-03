@@ -8,7 +8,9 @@ function Index({ orders, products }) {
   const status = ["preparing", "on the way", "delivery"];
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete("http://localhost:3000/api/product/" + id);
+      const res = await axios.delete(
+        "https://incredible-biscotti-8e24c5.netlify.app/api/product/" + id
+      );
       setProductList(productList.filter((pro) => pro._id !== id));
     } catch (err) {
       console.log(err);
@@ -21,10 +23,13 @@ function Index({ orders, products }) {
     const currenStatus = item.status;
 
     try {
-      const res = await axios.put("http://localhost:3000/api/order/" + id, {
-        status: currenStatus + 1,
-        //
-      });
+      const res = await axios.put(
+        "https://incredible-biscotti-8e24c5.netlify.app/api/order/" + id,
+        {
+          status: currenStatus + 1,
+          //
+        }
+      );
       setOrderList([
         res.data,
         ...orderList.filter((order) => order._id !== id),

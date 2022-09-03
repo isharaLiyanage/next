@@ -1,7 +1,5 @@
 import axios from "axios";
 import Head from "next/head";
-import Image from "next/image";
-import { useEffect } from "react";
 import Featured from "../components/Featured";
 import Information from "../components/Information";
 import People from "../components/People";

@@ -10,7 +10,9 @@ function Login() {
 
   const handleClick = async () => {
     try {
-      await axios.post("http://localhost:3000/api/Login"),
+      await axios.post(
+        "https://incredible-biscotti-8e24c5.netlify.app/api/Login"
+      ),
         {
           username,
           password,
@@ -50,10 +52,7 @@ function Login() {
         </div>
         <div className=" flex w-full justify-center">
           {" "}
-          <button
-            className="  px-16  py-2  bg-teal-600"
-            onClick={handleClick}
-          >
+          <button className="  px-16  py-2  bg-teal-600" onClick={handleClick}>
             {" "}
             Sign In
           </button>

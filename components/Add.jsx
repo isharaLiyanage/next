@@ -39,7 +39,10 @@ function Add() {
         extra,
         img: url,
       };
-      await axios.post("http://localhost:3000/api/product", newProduct);
+      await axios.post(
+        "https://incredible-biscotti-8e24c5.netlify.app/api/product",
+        newProduct
+      );
       console.log("succuss");
     } catch (err) {
       console.log(err);

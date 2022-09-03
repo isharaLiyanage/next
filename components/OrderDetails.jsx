@@ -13,7 +13,10 @@ function OrderDetails({ total, comment }) {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/order", data);
+      const res = await axios.post(
+        "https://incredible-biscotti-8e24c5.netlify.app/api/order",
+        data
+      );
 
       res.status === 201 && router.push("/orders/" + res.data._id);
       dispatch(reset());

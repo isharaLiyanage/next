@@ -7,7 +7,7 @@ function ShopCard({ product }) {
     <div className={styles.start}>
       <div className=" container p-3  bg-slate-100 ">
         <div className=" text-center w-64">
-          <Link href={`product/${product._id}`}>
+          <Link href={`../product/${product._id}`}>
             <Image src={product.img} alt="" width={200} height={200} />
           </Link>
           <div className=" text-lg text-red-600 ">
@@ -28,7 +28,7 @@ function ShopCard({ product }) {
           </div>
           <div className=" bg-orange-400 m-2 hover:bg-orange-500 cursor-pointer ">
             {" "}
-            <Link passHref href={`product/${product._id}`}>
+            <Link passHref href={`../product/${product._id}`}>
               <div className=""> $ {product.prices[0]}</div>
             </Link>
           </div>

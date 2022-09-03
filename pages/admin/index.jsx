@@ -137,8 +137,12 @@ export const getServerSideProps = async (ctx) => {
   //     },
   //   };
   // }
-  const productRes = await axios.get("http://localhost:3000/api/product");
-  const orderRes = await axios.get("http://localhost:3000/api/order");
+  const productRes = await axios.get(
+    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
+  );
+  const orderRes = await axios.get(
+    "https://incredible-biscotti-8e24c5.netlify.app/api/order"
+  );
 
   return {
     props: {

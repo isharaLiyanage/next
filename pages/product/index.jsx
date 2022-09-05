@@ -25,15 +25,5 @@ function ProductList({ productList }) {
     </div>
   );
 }
-export const getServerSideProps = async () => {
-  const res = await axios.get(
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-  );
-  return {
-    props: {
-      productList: res.data,
-    },
-  };
-};
 
 export default ProductList;

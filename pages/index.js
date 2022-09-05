@@ -6,7 +6,7 @@ import People from "../components/People";
 import ShopList from "../components/ShopList";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home({ productList }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,8 +17,18 @@ export default function Home() {
 
       <Featured />
       <Information />
-      <ShopList />
+      <ShopList productList={productList} />
       <People />
     </div>
   );
 }
+export const getServerSideProps = async () => {
+  const res = await axios.get(
+    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
+  );
+  return {
+    props: {
+      productList: res.data,
+    },
+  };
+};

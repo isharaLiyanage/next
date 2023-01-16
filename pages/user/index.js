@@ -4,9 +4,10 @@ import Router from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import { updateUser } from "../../redux/apiCalls";
 
-function User() {
+function User({}) {
   const [name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Address, setAddress] = useState("");
@@ -15,6 +16,19 @@ function User() {
   const dispatch = useDispatch();
 
   const User = useSelector((state) => state.user.currentUser);
+
+  async function getData() {
+    
+    const response = await axios.get(
+      `http://localhost:3000/api/order/${User._id}`
+    );
+
+    
+    return response.data;
+  }
+
+  const orders = getData();
+  console.log(orders)
   if (User._id) {
   } else {
     Router.push("./login");
@@ -76,6 +90,9 @@ function User() {
       const user = { ...putData };
       updateUser(userId, user, dispatch);
     }
+
+
+  
   };
   return (
     <div>
@@ -148,10 +165,12 @@ function User() {
           </li>
           <li></li>
         </ul>
-        <button onClick={() => handleStatus(User._id)}>Update</button>
+        <button className=" bg-teal-800 px-4 text-white" onClick={() => handleStatus(User._id)}>Update</button>
       </div>
     </div>
   );
 }
 
 export default User;
+
+

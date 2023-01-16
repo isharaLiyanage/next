@@ -1,28 +1,29 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { login } from "../../redux/apiCalls";
+import { useSelector } from "react-redux";
 
 function Login() {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(false);
   const router = useRouter();
+  const success = useSelector((state) => state.user.currentUser?.username);
 
-  const handleClick = async () => {
-    try {
-      await axios.post(
-        "https://incredible-biscotti-8e24c5.netlify.app/api/Login"
-      ),
-        {
-          username,
-          password,
-        };
-      router.push("/admin");
-    } catch (err) {
-      console.log(err);
-      setError(true);
-    }
-  };
+  if (success) {
+    router.push("/admin");
+  }
+
+  
+    const handleClick = (e) => {
+      e.preventDefault();
+      login(dispatch, { username, password });
+    };
+  
+ 
+    
+  
 
   return (
     <div className=" flex my-16 justify-center items-center">

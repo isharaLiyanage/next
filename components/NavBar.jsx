@@ -5,19 +5,22 @@ import Image from "next/image";
 import cart from "../public/img/cart.png";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userRedux";
+import { logOut } from "../redux/apiCalls";
 
 function MobileNav({ open, setOpen }) {
   const Quantity = useSelector((state) => state.cart.quantity);
 
   const User = useSelector((state) => state.user?.currentUser?.username);
-
+  const handleLogout = () => {
+    logout(dispatch);
+  };
   return (
     <div
-      className={`absolute top-0 left-0 h-screen w-screen z-50 bg-white transform ${
+      className={`absolute top-0 left-0 h-screen w-screen  bg-white z-50 transform ${
         open ? "-translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+      } transition-transform duration-300 ease-in-out filter `}
     >
-      <div className=" hidden  md:flex items-center justify-center filter drop-shadow-md z-50 bg-white h-20">
+      <div className=" hidden  md:flex items-center justify-center filter z-50 bg-white h-20">
         {" "}
         {/*logo container*/}
         <Link className="text-xl font-semibold" href="/">
@@ -25,7 +28,7 @@ function MobileNav({ open, setOpen }) {
         </Link>
       </div>
       <div className="flex flex-col ml-4">
-        <div className="text-xl font-medium my-4">
+        <div className="text-xl font-normal my-4">
           <div
             onClick={() =>
               setTimeout(() => {
@@ -53,23 +56,55 @@ function MobileNav({ open, setOpen }) {
         </div>
       </div>
       <Link href={"/user"}>
-        <div className="ml-3 text-yellow-50 hover:text-yellow-400">
+        <div   onClick={() =>
+            setTimeout(() => {
+              setOpen(!open);
+            }, 100)
+          } className="text-xl font-bold  ml-4 my-4">
           {User ? (
             <div className=" " key={User}>
               {" "}
-              {User}{" "}
+              {User}
+              <Link href="/cart">
+            <div className=" ml-10 w-6 relative hover:text-yellow-400 cursor-pointer ">
+              <Image
+                src={cart}
+                alt=""
+                width={20}
+                height={20}
+                className="ml-4"
+              />
+              <div className={styles.cartCont}>{Quantity}</div>
+            </div>
+          </Link>{" "}
             </div>
           ) : (
             "sign"
           )}
         </div>
       </Link>
+      <div className=" relative w-9">
+      <div
+          onClick={() =>
+            setTimeout(() => {
+              setOpen(!open);
+            }, 100)
+          }
+        >
       <Link href="/cart">
-        <div className=" ml-10 relative hover:text-yellow-400 cursor-pointer ">
-          <Image src={cart} alt="" width={20} height={20} className="ml-4" />
-          <div className={styles.cartCont}>{Quantity}</div>
-        </div>
-      </Link>
+            <div className=" ml-10 relative hover:text-yellow-400 cursor-pointer ">
+              <Image
+                src={cart}
+                alt=""
+                width={20}
+                height={20}
+                className="ml-4"
+              />
+              <div className={styles.cartCont}>{Quantity}</div>
+            </div>
+          </Link></div>
+          </div>
+
     </div>
   );
 }
@@ -80,7 +115,7 @@ export default function NavBar() {
   const Quantity = useSelector((state) => state.cart.quantity);
   const User = useSelector((state) => state.user?.currentUser?.username);
   const handleLogout = () => {
-    logout(dispatch);
+    logOut(dispatch);
   };
   return (
     <nav className="flex filter drop-shadow-md  bg-orange-700 px-4 py-4 h-20 items-center justify-evenly">
@@ -124,7 +159,7 @@ export default function NavBar() {
         <div className="hidden md:flex">
           <div className=" mr-3">
             {" "}
-            <Link Link href={"#product"} className="">
+            <Link Link href={"/product"} className="">
               <a className="ml-3 text-yellow-50 hover:text-yellow-400">
                 {" "}
                 Product
@@ -151,8 +186,8 @@ export default function NavBar() {
             <div className="ml-3 text-yellow-50 hover:text-yellow-400">
               {User ? (
                 <div className=" " key={User}>
-                  <Link href={"/user"}>{User}</Link>
-                  <button onClick={handleLogout}>LOG OUT</button>
+                  <Link href={"/user"}>{User}</Link> {" "}
+                  <button onClick={handleLogout}>Log Out</button>
                 </div>
               ) : (
                 <div className="">

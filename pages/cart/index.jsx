@@ -188,8 +188,10 @@ function Cart() {
             )}
           </div>
         </div>
-        <div className="  w-2/12">
-          <input
+        <div className=" ml-6 mt-4 p-2  w-2/12">
+          <textarea rows={6}
+          cols={20}
+          placeholder="Anything Else..."
             type="text"
             name="comment"
             onChange={(e) => setComment(e.target.value)}

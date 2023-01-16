@@ -49,7 +49,7 @@ function Product({ product, productList }) {
       setSelect("large");
     }
   }, [size]);
-  console.log(select);
+
   const handleClick = () => {
     dispatch(addProduct({ ...product, select, extras, price, quantity }));
   };
@@ -174,7 +174,8 @@ function Product({ product, productList }) {
                     name={option.text}
                   />
                   <label htmlFor="cheese" className=" ml-1">
-                    {option.text}
+                    {option.text}(${option.price})
+                
                   </label>
                 </div>
               ))}
@@ -251,10 +252,10 @@ function Product({ product, productList }) {
 
 export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
-    `https://incredible-biscotti-8e24c5.netlify.app/api/product/${params.id}`
+    `http://localhost:3000/api/product/${params.id}`
   );
   const popularRes = await axios.get(
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
+    "http://localhost:3000/api/product"
   );
   return {
     props: {

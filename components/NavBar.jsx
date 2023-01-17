@@ -8,7 +8,7 @@ import { logout } from "../redux/userRedux";
 import { logOut } from "../redux/apiCalls";
 
 function MobileNav({ open, setOpen }) {
-  const Quantity = useSelector((state) => state.cart.quantity);
+  const Quantity = useSelector((state) => state.cart?.quantity);
 
   const User = useSelector((state) => state.user?.currentUser?.username);
   const handleLogout = () => {

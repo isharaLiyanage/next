@@ -20,11 +20,7 @@ function User({}) {
   async function getData() {
     
     const response = await axios.get(
-<<<<<<< HEAD
       `https://incredible-biscotti-8e24c5.netlify.app/api/order/${User._id}`
-=======
-      `http://localhost:3000/api/order/${User._id}`
->>>>>>> 8c5b0a82058842ab451a92a95dc2f07f8b9f5aa8
     );
 
     

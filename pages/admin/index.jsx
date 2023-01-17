@@ -11,7 +11,7 @@ function Index({ orders, products }) {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        "http://localhost:3000/api/product/" + id
+        "https://incredible-biscotti-8e24c5.netlify.app/api/product/" + id
       );
       setProductList(productList.filter((pro) => pro._id !== id));
     } catch (err) {
@@ -26,7 +26,7 @@ function Index({ orders, products }) {
 
     try {
       const res = await axios.put(
-        "http://localhost:3000/api/order/" + id,
+        "https://incredible-biscotti-8e24c5.netlify.app/api/order/" + id,
         {
           status: currenStatus + 1,
           //
@@ -148,10 +148,10 @@ export const getServerSideProps = async (ctx) => {
   //   };
   // }
   const productRes = await axios.get(
-    "http://localhost:3000/api/product"
+    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
   );
   const orderRes = await axios.get(
-    "http://localhost:3000/api/order"
+    "https://incredible-biscotti-8e24c5.netlify.app/api/order"
   );
 
   return {

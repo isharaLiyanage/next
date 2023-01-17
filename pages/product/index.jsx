@@ -30,7 +30,7 @@ export default ProductList;
 export const getServerSideProps = async () => {
   const res = await axios.get(
 
-    "https://next-mhpsy7suw-isharaliyanage.vercel.app/api/product"
+    "https://main--incredible-biscotti-8e24c5.netlify.app/api/product"
 
 
     // "https://incredible-biscotti-8e24c5.netlify.app/api/product"

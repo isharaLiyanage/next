@@ -184,7 +184,7 @@ export default function NavBar() {
           </div>
           <div className="">
             <div className="ml-3 text-yellow-50 hover:text-yellow-400">
-              {User ? (
+              {/* {User ? (
                 <div className=" " key={User}>
                   <Link href={"/user"}>{User}</Link> {" "}
                   <button onClick={handleLogout}>Log Out</button>
@@ -194,7 +194,7 @@ export default function NavBar() {
                   <Link href={"/login"}>Login</Link> or{" "}
                   <Link href={"/sign"}>Sign in </Link>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           <Link href="/cart">

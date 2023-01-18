@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       res.status(201).json(products);
     } catch (err) {
       res.status(500).json(err);
-      console.log("first")
+      console.log("dsds")
     }
   }
   if (method === "POST") {

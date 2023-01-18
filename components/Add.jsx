@@ -45,7 +45,7 @@ function Add() {
         img: url,
       };
       await axios.post(
-        "http://localhost:3000/api/product",
+        "https://incredible-biscotti-8e24c5.netlify.app/api/product",
         newProduct
       );
       setDone(true);

@@ -255,7 +255,7 @@ export const getServerSideProps = async ({ params }) => {
     `https://incredible-biscotti-8e24c5.netlify.app/product/${params.id}`
   );
   const popularRes = await axios.get(
-    "http://localhost:3000/api/product"
+    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
   );
   return {
     props: {

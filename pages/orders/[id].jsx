@@ -5,7 +5,7 @@ import icon03 from "../../public/img/icon/003.png";
 import icon04 from "../../public/img/icon/004.png";
 import icon05 from "../../public/img/icon/005.png";
 import icon06 from "../../public/img/icon/006.png";
-import { publicRequest } from "../../redux/requestMothed";
+import { publicRequest, userRequest } from "../../redux/requestMothed";
 
 function Order({ Order }) {
   const status = Order.status;
@@ -108,7 +108,7 @@ function Order({ Order }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await publicRequest.get(`/order/${params.id}`);
+  const res = await userRequest.get(`/order/${params.id}`);
   return {
     props: {
       Order: res.data,

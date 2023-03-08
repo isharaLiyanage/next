@@ -4,6 +4,7 @@ import Featured from "../components/Featured";
 import Information from "../components/Information";
 import People from "../components/People";
 import ShopList from "../components/ShopList";
+import { publicRequest } from "../redux/requestMothed";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ productList }) {
@@ -23,12 +24,11 @@ export default function Home({ productList }) {
   );
 }
 export const getServerSideProps = async () => {
-  const res = await axios.get(
+  const res = await publicRequest.get("/product");
+  //   "https://next-iobgmczff-isharaliyanage.vercel.app/"
 
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-
-    // "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-  );
+  // "https://incredible-biscotti-8e24c5.netlify.app/api/product"
+  // );
   return {
     props: {
       productList: res.data,

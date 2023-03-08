@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { publicRequest } from "../../redux/requestMothed";
 import styles from "../../styles/Admin.module.css";
 
 function Index({ orders, products }) {
@@ -10,9 +11,7 @@ function Index({ orders, products }) {
   const status = ["preparing", "on the way", "delivery"];
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        "https://incredible-biscotti-8e24c5.netlify.app/api/product/" + id
-      );
+      const res = await publicRequest.delete("/product/" + id);
       setProductList(productList.filter((pro) => pro._id !== id));
     } catch (err) {
       console.log(err);
@@ -25,13 +24,10 @@ function Index({ orders, products }) {
     const currenStatus = item.status;
 
     try {
-      const res = await axios.put(
-        "https://incredible-biscotti-8e24c5.netlify.app/api/order/" + id,
-        {
-          status: currenStatus + 1,
-          //
-        }
-      );
+      const res = await publicRequest.put("/order/" + id, {
+        status: currenStatus + 1,
+        //
+      });
       setOrderList([
         res.data,
         ...orderList.filter((order) => order._id !== id),
@@ -46,7 +42,10 @@ function Index({ orders, products }) {
         <div className="  w-1/2">
           <div className=" ml-3 text-3xl text-center">Products</div>
           <Link className="" href="/admin/product">
-           <h3 className=" cursor-pointer ml-3 mt-7 bg-teal-600 text-center  w-32 ml"> Add Products </h3> 
+            <h3 className=" cursor-pointer ml-3 mt-7 bg-teal-600 text-center  w-32 ml">
+              {" "}
+              Add Products{" "}
+            </h3>
           </Link>
           <table>
             <tbody>
@@ -81,7 +80,10 @@ function Index({ orders, products }) {
                     {" "}
                     <div className="">
                       <button className=" bg-green-600 px-4">Edit</button>
-                      <button className=" bg-red-600 px-2" onClick={() => handleDelete(product._id)}>
+                      <button
+                        className=" bg-red-600 px-2"
+                        onClick={() => handleDelete(product._id)}
+                      >
                         Delete
                       </button>
                     </div>
@@ -105,7 +107,7 @@ function Index({ orders, products }) {
               </tr>
             </tbody>
             {orderList.map((order) => (
-              <tbody className= {styles.highlight } key={order._id}>
+              <tbody className={styles.highlight} key={order._id}>
                 <tr>
                   <td>...{order._id.slice(18, 50)}</td>
                   <td>{order.customer}</td>
@@ -117,7 +119,7 @@ function Index({ orders, products }) {
                       <div className="">paid</div>
                     )}
                   </td>
-                  <td>{ order.status >=4 ? "Done" : status[order.status] }</td>
+                  <td>{order.status >= 4 ? "Done" : status[order.status]}</td>
 
                   <td>
                     {" "}
@@ -147,12 +149,8 @@ export const getServerSideProps = async (ctx) => {
   //     },
   //   };
   // }
-  const productRes = await axios.get(
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-  );
-  const orderRes = await axios.get(
-    "https://incredible-biscotti-8e24c5.netlify.app/api/order"
-  );
+  const productRes = await publicRequest.get("/product");
+  const orderRes = await publicRequest.get("/order");
 
   return {
     props: {

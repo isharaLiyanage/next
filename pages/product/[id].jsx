@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 import ShopList from "../../components/ShopList";
+import { publicRequest } from "../../redux/requestMothed";
 
 function Product({ product, productList }) {
   const [price, setPrice] = useState(product.prices[0]);
@@ -175,7 +176,6 @@ function Product({ product, productList }) {
                   />
                   <label htmlFor="cheese" className=" ml-1">
                     {option.text}(${option.price})
-                
                   </label>
                 </div>
               ))}
@@ -251,12 +251,8 @@ function Product({ product, productList }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `https://incredible-biscotti-8e24c5.netlify.app/product/${params.id}`
-  );
-  const popularRes = await axios.get(
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-  );
+  const res = await publicRequest.get(`/product/${params.id}`);
+  const popularRes = await publicRequest.get("/product");
   return {
     props: {
       product: res.data,

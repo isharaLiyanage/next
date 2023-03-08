@@ -1,18 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { publicRequest } from "../redux/requestMothed";
 
 function Add() {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState([]);
-  
+
   const [extra, setExtraOption] = useState([]);
   const [extraOption, setExtra] = useState([]);
   const [done, setDone] = useState(false);
-
-
-
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -44,16 +42,13 @@ function Add() {
         extra,
         img: url,
       };
-      await axios.post(
-        "https://incredible-biscotti-8e24c5.netlify.app/api/product",
-        newProduct
-      );
+      await publicRequest.post("/product", newProduct);
       setDone(true);
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   return (
     <div>
       <div className=" ml-5">
@@ -92,36 +87,34 @@ function Add() {
         </div>
         <div className=" flex flex-wrap mt-5">
           <div className="flex mt-2">
-          <label htmlFor="prices">Price</label>
-          <input
-            type="number"
-            name="prices"
-            id="price"
-            className=" mx-10 outline outline-slate-700 w-40"
-            onChange={(e) => changePrice(e, 0)}
-          />
+            <label htmlFor="prices">Price</label>
+            <input
+              type="number"
+              name="prices"
+              id="price"
+              className=" mx-10 outline outline-slate-700 w-40"
+              onChange={(e) => changePrice(e, 0)}
+            />
           </div>
           <div className="flex mt-2">
-
-          <label htmlFor="prices">Price</label>
-          <input
-            type="number"
-            name="prices"
-            id="prices"
-            className=" mx-10 outline outline-slate-700 w-40"
-            onChange={(e) => changePrice(e, 1)}
-          />
+            <label htmlFor="prices">Price</label>
+            <input
+              type="number"
+              name="prices"
+              id="prices"
+              className=" mx-10 outline outline-slate-700 w-40"
+              onChange={(e) => changePrice(e, 1)}
+            />
           </div>
           <div className="flex mt-2">
-
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            name="prices"
-            id="price"
-            className=" mx-10 outline outline-slate-700 w-40"
-            onChange={(e) => changePrice(e, 2)}
-          />
+            <label htmlFor="price">Price</label>
+            <input
+              type="number"
+              name="prices"
+              id="price"
+              className=" mx-10 outline outline-slate-700 w-40"
+              onChange={(e) => changePrice(e, 2)}
+            />
           </div>
         </div>
         <div className="mt-5 ">
@@ -133,7 +126,9 @@ function Add() {
             className=" ml-10 outline outline-slate-700 w-40"
             onChange={handleExtraInput}
           />
-          <label htmlFor="extraPrice " className=" ml-2">Price</label>
+          <label htmlFor="extraPrice " className=" ml-2">
+            Price
+          </label>
           <input
             type="number"
             name="extraPrice"
@@ -148,9 +143,8 @@ function Add() {
         <div className="">
           {extra.map((option) => (
             <div className="flex flex-wrap  mt-5" key={option.text}>
-              <div className="mx-5">{option.text}</div>       
+              <div className="mx-5">{option.text}</div>
               <div className="mx-5">$ {option.extraPrice}</div>
-
             </div>
           ))}
         </div>
@@ -162,15 +156,14 @@ function Add() {
         >
           Create
         </button>
-       {done ?(
-        
-          <h6 className=" w-24 my-5 mx-4 px-3  bg-amber-200 "  >
-         Uploaded
-        </h6>):'' }
+        {done ? (
+          <h6 className=" w-24 my-5 mx-4 px-3  bg-amber-200 ">Uploaded</h6>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
 }
 
 export default Add;
-

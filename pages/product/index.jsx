@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ShopCard from "../../components/ShopCard";
+import { publicRequest } from "../../redux/requestMothed";
 
 function ProductList({ productList }) {
   return (
@@ -28,13 +29,9 @@ function ProductList({ productList }) {
 
 export default ProductList;
 export const getServerSideProps = async () => {
-  const res = await axios.get(
+  const res = await publicRequest.get("/product");
+  // "https://incredible-biscotti-8e24c5.netlify.app/api/product"
 
-    "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-
-
-    // "https://incredible-biscotti-8e24c5.netlify.app/api/product"
-  );
   return {
     props: {
       productList: res.data,

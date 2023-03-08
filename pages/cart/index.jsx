@@ -11,6 +11,7 @@ import {
 import { useRouter } from "next/router";
 import { reset } from "../../redux/cartSlice";
 import OrderDetails from "../../components/OrderDetails";
+import { publicRequest } from "../../redux/requestMothed";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -31,10 +32,7 @@ function Cart() {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(
-        "https://incredible-biscotti-8e24c5.netlify.app/api/order",
-        data
-      );
+      const res = await publicRequest.post("/order", data);
 
       res.status === 201 && router.push("/orders/" + res.data._id);
       dispatch(reset());
@@ -189,9 +187,10 @@ function Cart() {
           </div>
         </div>
         <div className=" ml-6 mt-4 p-2  w-2/12">
-          <textarea rows={6}
-          cols={20}
-          placeholder="Anything Else..."
+          <textarea
+            rows={6}
+            cols={20}
+            placeholder="Anything Else..."
             type="text"
             name="comment"
             onChange={(e) => setComment(e.target.value)}

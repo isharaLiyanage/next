@@ -14,7 +14,7 @@ function MobileNav({ open, setOpen }) {
   const User = useSelector((state) => state.user?.currentUser?.username);
   const handleLogout = () => {
     logout(dispatch);
-    CartReset(dispatch);
+    dispatch(CartReset());
   };
   return (
     <div

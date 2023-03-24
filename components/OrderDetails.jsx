@@ -17,7 +17,7 @@ function OrderDetails({ total, comment }) {
       const res = await publicRequest.post("/order", data);
 
       res.status === 201 && router.push("/orders/" + res.data._id);
-      dispatch(reset());
+      dispatch(CartReset());
     } catch (err) {
       console.log(err);
     }

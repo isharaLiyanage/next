@@ -20,7 +20,7 @@ function Cart() {
 
   const [comment, setComment] = useState("");
   console.log(comment);
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state?.cart);
 
   const amount = cart.total;
   const currency = "USD";
@@ -118,7 +118,7 @@ function Cart() {
             </thead>
             <tbody>
               {cart.products.map((product) => (
-                <tr key={product._id}>
+                <tr key={Math.random()}>
                   <th className=" w-60">
                     <div className=" relative h-9 w-9 m-auto">
                       <Image

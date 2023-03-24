@@ -15,7 +15,7 @@ function User({}) {
   const [file, setFile] = useState("");
   const dispatch = useDispatch();
 
-  const User = useSelector((state) => state.user.currentUser);
+  const User = useSelector((state) => state.user?.currentUser);
 
   async function getData() {
     const response = await publicRequest.get(`/order/${User._id}`);

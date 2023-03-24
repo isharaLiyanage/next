@@ -9,11 +9,11 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const error = useSelector((state) => state.user.error);
-  const success = useSelector((state) => state.user.currentSign?.username);
+  const error = useSelector((state) => state.user?.error);
+  const success = useSelector((state) => state.user?.currentSign?.username);
 
   console.log(success);
-  const user = useSelector((state) => state.user.currentUser);
+  const user = useSelector((state) => state.user?.currentUser);
   if (user) {
     Router.push("./");
   }

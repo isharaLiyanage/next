@@ -6,13 +6,15 @@ import cart from "../public/img/cart.png";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userRedux";
 import { logOut } from "../redux/apiCalls";
+import { CartReset } from "../redux/cartSlice";
 
 function MobileNav({ open, setOpen }) {
   const Quantity = useSelector((state) => state.cart?.quantity);
 
-  const User = useSelector((state) => state.user.currentUser?.username);
+  const User = useSelector((state) => state.user?.currentUser?.username);
   const handleLogout = () => {
     logout(dispatch);
+    CartReset(dispatch);
   };
   return (
     <div
@@ -56,27 +58,30 @@ function MobileNav({ open, setOpen }) {
         </div>
       </div>
       <Link href={"/user"}>
-        <div   onClick={() =>
+        <div
+          onClick={() =>
             setTimeout(() => {
               setOpen(!open);
             }, 100)
-          } className="text-xl font-bold  ml-4 my-4">
+          }
+          className="text-xl font-bold  ml-4 my-4"
+        >
           {User ? (
             <div className=" " key={User}>
               {" "}
               {User}
               <Link href="/cart">
-            <div className=" ml-10 w-6 relative hover:text-yellow-400 cursor-pointer ">
-              <Image
-                src={cart}
-                alt=""
-                width={20}
-                height={20}
-                className="ml-4"
-              />
-              <div className={styles.cartCont}>{Quantity}</div>
-            </div>
-          </Link>{" "}
+                <div className=" ml-10 w-6 relative hover:text-yellow-400 cursor-pointer ">
+                  <Image
+                    src={cart}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="ml-4"
+                  />
+                  <div className={styles.cartCont}>{Quantity}</div>
+                </div>
+              </Link>{" "}
             </div>
           ) : (
             "sign"
@@ -84,14 +89,14 @@ function MobileNav({ open, setOpen }) {
         </div>
       </Link>
       <div className=" relative w-9">
-      <div
+        <div
           onClick={() =>
             setTimeout(() => {
               setOpen(!open);
             }, 100)
           }
         >
-      <Link href="/cart">
+          <Link href="/cart">
             <div className=" ml-10 relative hover:text-yellow-400 cursor-pointer ">
               <Image
                 src={cart}
@@ -102,9 +107,9 @@ function MobileNav({ open, setOpen }) {
               />
               <div className={styles.cartCont}>{Quantity}</div>
             </div>
-          </Link></div>
-          </div>
-
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
@@ -112,9 +117,10 @@ function MobileNav({ open, setOpen }) {
 export default function NavBar() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const Quantity = useSelector((state) => state.cart.quantity);
+  const Quantity = useSelector((state) => state.cart?.quantity);
   const User = useSelector((state) => state.user?.currentUser?.username);
   const handleLogout = () => {
+    dispatch(CartReset());
     logOut(dispatch);
   };
   return (
@@ -186,7 +192,7 @@ export default function NavBar() {
             <div className="ml-3 text-yellow-50 hover:text-yellow-400">
               {User ? (
                 <div className=" " key={User}>
-                  <Link href={"/user"}>{User}</Link> {" "}
+                  <Link href={"/user"}>{User}</Link>{" "}
                   <button onClick={handleLogout}>Log Out</button>
                 </div>
               ) : (

@@ -9,21 +9,16 @@ function Login() {
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(false);
   const router = useRouter();
-  const success = useSelector((state) => state.user.currentUser?.username);
+  const success = useSelector((state) => state.user?.currentUser?.username);
 
   if (success) {
     router.push("/admin");
   }
 
-  
-    const handleClick = (e) => {
-      e.preventDefault();
-      login(dispatch, { username, password });
-    };
-  
- 
-    
-  
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
 
   return (
     <div className=" flex my-16 justify-center items-center">

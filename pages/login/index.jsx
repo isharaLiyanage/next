@@ -7,8 +7,8 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.user.error);
-  const success = useSelector((state) => state.user.currentUser?.username);
+  const error = useSelector((state) => state?.user?.error);
+  const success = useSelector((state) => state.user?.currentUser?.username);
 
   if (success) {
     Router.push("./");

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const ISSERVER = typeof window === "undefined";
 
-const BASE_URL = "https://next-iobgmczff-isharaliyanage.vercel.app/api/";
+const BASE_URL = "https://next-app-mu-rust.vercel.app/api";
 let TOKEN;
 if (!ISSERVER) {
   TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user)

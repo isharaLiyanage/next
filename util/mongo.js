@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI.toString();
+const MONGODB_URI =
+  "mongodb+srv://ishara1:ishara@cluster0.pdoeo.mongodb.net/Food?retryWrites=true&w=majority";
 
 if (!MONGODB_URI) {
   console.log("null mongo url");

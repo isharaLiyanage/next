@@ -3,7 +3,6 @@ import dbConnect from "../../../util/mongo";
 import Product from "../../../models/Product";
 
 export default async function handler(req, res) {
-  
   const { method } = req;
   dbConnect();
 
@@ -13,7 +12,7 @@ export default async function handler(req, res) {
       res.status(201).json(products);
     } catch (err) {
       res.status(500).json(err);
-      console.log("dsds")
+      console.log(err);
     }
   }
   if (method === "POST") {
